@@ -12,7 +12,7 @@
         <ul>
             <!-- indexに配列のキーが入るぜ -->
             <li v-for="(todo, index) in todos">
-                {{ todo }}
+                {{ todo.title }}
                 <span class="command" @click="deleteItem(index)">[x]</span>
             </li>
         </ul>
