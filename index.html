@@ -9,19 +9,30 @@
 
     <div id="app" class="container">
         <h1>My Todos</h1>
-        <ul>
-            <!-- indexに配列のキーが入るぜ -->
+
+        <!-- v-showディレクティブを使ったやり方 -->
+        <!-- <ul> -->
+            <!-- <li v-for="(todo, index) in todos"> -->
+                <!-- <input type="checkbox" v-model="todo.isDone"> -->
+                <!-- <span :class="{done: todo.isDone}">{{ todo.title }}</span> -->
+                <!-- <span class="command" @click="deleteItem(index)">[x]</span> -->
+            <!-- </li> -->
+            <!-- <li v-show="!todos.length">Nothing to do, yay!</li> -->
+        <!-- </ul> -->
+
+            <!-- v-showディレクティブを使ったやり方 -->
+            <!-- v-forはv-ifよりも先に実行されるので、このような処理を書きたい場合は、同じタグの中にv-ifとv-forを一緒に書かないようにする -->
+        <ul v-if="todos.length">
             <li v-for="(todo, index) in todos">
                 <input type="checkbox" v-model="todo.isDone">
-                <!-- <span v-bind:class="{done: todo.isDone}">{{ todo.title }}</span> -->
-                <!-- v-bindはよく使うので:で代用可能だぜ！ -->
                 <span :class="{done: todo.isDone}">{{ todo.title }}</span>
                 <span class="command" @click="deleteItem(index)">[x]</span>
             </li>
         </ul>
+        <ul v-else>
+            <li>Nothing to do, yay!</li>
+        </ul>
 
-        <!-- <form v-on:submit="addItem"> -->
-        <!-- v-onはよく使うので@で代用可能だぜ！ -->
         <form @submit.prevent="addItem">
             <input type="text" v-model="newItem">
             <input type="submit" value="add">
