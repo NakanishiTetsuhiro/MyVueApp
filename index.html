@@ -10,7 +10,11 @@
     <div id="app" class="container">
         <h1>My Todos</h1>
         <ul>
-            <li v-for="todo in todos">{{ todo }}</li>
+            <!-- indexに配列のキーが入るぜ -->
+            <li v-for="(todo, index) in todos">
+                {{ todo }}
+                <span class="command" @click="deleteItem(index)">[x]</span>
+            </li>
         </ul>
 
         <!-- <form v-on:submit="addItem"> -->
