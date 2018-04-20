@@ -8,29 +8,18 @@
 <body>
 
     <div id="app" class="container">
-        <h1>My Todos</h1>
+        <h1>
+            My Todos
+            <span class="info">{{ remaining }}/{{ todos.length }}</span>
+        </h1>
 
-        <!-- v-showディレクティブを使ったやり方 -->
-        <!-- <ul> -->
-            <!-- <li v-for="(todo, index) in todos"> -->
-                <!-- <input type="checkbox" v-model="todo.isDone"> -->
-                <!-- <span :class="{done: todo.isDone}">{{ todo.title }}</span> -->
-                <!-- <span class="command" @click="deleteItem(index)">[x]</span> -->
-            <!-- </li> -->
-            <!-- <li v-show="!todos.length">Nothing to do, yay!</li> -->
-        <!-- </ul> -->
-
-            <!-- v-showディレクティブを使ったやり方 -->
-            <!-- v-forはv-ifよりも先に実行されるので、このような処理を書きたい場合は、同じタグの中にv-ifとv-forを一緒に書かないようにする -->
-        <ul v-if="todos.length">
+        <ul>
             <li v-for="(todo, index) in todos">
                 <input type="checkbox" v-model="todo.isDone">
                 <span :class="{done: todo.isDone}">{{ todo.title }}</span>
                 <span class="command" @click="deleteItem(index)">[x]</span>
             </li>
-        </ul>
-        <ul v-else>
-            <li>Nothing to do, yay!</li>
+            <li v-show="!todos.length">Nothing to do, yay!</li>
         </ul>
 
         <form @submit.prevent="addItem">

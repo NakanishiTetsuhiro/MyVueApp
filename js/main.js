@@ -8,18 +8,18 @@
         data: {
             newItem: '',
             todos: [
-                // {
-                //     title: 'task1',
-                //     isDone: false
-                // },
-                // {
-                //     title: 'task2',
-                //     isDone: false
-                // },
-                // {
-                //     title: 'task3',
-                //     isDone: true
-                // }
+                {
+                    title: 'task1',
+                    isDone: false
+                },
+                {
+                    title: 'task2',
+                    isDone: false
+                },
+                {
+                    title: 'task3',
+                    isDone: true
+                }
             ]
         },
         methods: {
@@ -35,6 +35,14 @@
                 if (confirm('are you sure?')) {
                     this.todos.splice(index, 1);
                 }
+            }
+        },
+        computed: {
+            remaining: function() {
+                var items = this. todos.filter(function(todo) {
+                    return !todo.isDone;
+                })
+                return items.length;
             }
         }
     })
